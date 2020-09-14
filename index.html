@@ -1,55 +1,42 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <title>AVL Tree Visualization</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <input type="text" id="value" class="form-control form-inline my-2 my-lg-0 mr-sm-2 w-25" value="" onkeypress="handleKeyPress(event)" autofocus placeholder="Enter a number or Press Enter to insert random">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="InsertNode();">Insert</button>
-                </li>
-                <div style="padding:5px"></div>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="DeleteNode();">Delete</button>
-                </li>
-                <div style="padding:5px"></div>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="SearchNode();">Search</button>
-                </li>
-            </ul>
-        </div>
-
-    </nav>
-
-    <br>
-    <div class="row" style="margin-left: 5px;">
-        <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="Print(avl.inorder);">Inorder</button>
-        <div style="padding:5px"></div>
-        <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="Print(avl.preorder);">Preorder</button>
-        <div style="padding:5px"></div>
-        <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="Print(avl.postorder);">Postorder</button>
-        <div style="padding:5px"></div>
-        <span id="msg" style="margin-top:8px;"></span>
+    <div style="padding: 10px;padding-left: 20px">
+        <form id="insertTree" onSubmit="return handleInsert()">
+            <input id="insertInput" class="col-xs-2" type="text" placeholder="Number to insert" maxlength="4" size="14" autofocus>
+            <!-- <input type="submit" value="Insert"> -->
+            <button type="submit" class="btn btn-dark my-2 my-sm-0">Insert</button>
+        </form>
+        <form id="deleteTree" onSubmit="return handleDelete()">
+            <input id="deleteInput" type="text" class="col-xs-2" placeholder="Number to delete" maxlength="4" size="14">
+            <button type="submit" class="btn btn-dark my-2 my-sm-0">Delete</button>
+        </form>
+        <form id="searchTree" onSubmit="return handleSearch()">
+            <input id="searchInput" type="text" class="col-xs-2" placeholder="Number to search" maxlength="4" size="14">
+            <button type="submit" class="btn btn-dark my-2 my-sm-0">Search</button>
+        </form>
     </div>
-
-    <!-- load the d3.js library -->
-    <script src="d3.min.js"></script>
-    <script src="avl.js" charset="utf-8"></script>
-    <script src="graph.js" charset="utf-8"></script>
-
+    <div class="row" style="margin-left: 15px;padding: 10px;">
+        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="inorder()">Inorder</button>
+        <div style="padding:5px"></div>
+        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="preorder()">Preorder</button>
+        <div style="padding:5px"></div>
+        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="postorder()">Postorder</button>
+        <div style="padding:5px"></div>
+    </div>
+    <svg></svg>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="tree-creation.js"></script>
+    <script src="tree-visualization.js"></script>
 </body>
