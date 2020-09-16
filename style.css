@@ -1,3 +1,8 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
 .node circle {
     fill: #ecf0f1;
     stroke: #3498db;
