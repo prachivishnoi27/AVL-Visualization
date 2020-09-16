@@ -269,7 +269,7 @@ var removeHighlight = function(node) {
     });
     hlNode.transition()
         .duration(duration / 3)
-        .style('stroke', '#3498db')
+        .style('stroke', '#247d24')
         .style('stroke-width', '2.5px');
 };
 
