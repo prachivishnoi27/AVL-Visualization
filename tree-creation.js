@@ -56,6 +56,8 @@ var findNode = function(n) {
     return found;
 };
 
+document.getElementById("inorder").addEventListener("click", inorder);
+
 var inorder = function() {
     var traversal = [];
     var walker = data;
@@ -64,7 +66,8 @@ var inorder = function() {
     inorderUtil(walker, traversal);
     var i = traversal.toString();
     i = 'Inorder Traversal: ' + i;
-    confirm(i);
+    document.getElementById("state").innerHTML = i;
+    // confirm(i);
 }
 
 var inorderUtil = function(walker, traversal) {
@@ -82,6 +85,8 @@ var inorderUtil = function(walker, traversal) {
     }
 }
 
+document.getElementById("preorder").addEventListener("click", preorder);
+
 var preorder = function() {
     var traversal = [];
     var walker = data;
@@ -90,7 +95,8 @@ var preorder = function() {
     preorderUtil(walker, traversal);
     var p = traversal.toString();
     p = 'Preorder Traversal: ' + p;
-    confirm(p);
+    document.getElementById("state").innerHTML = p;
+    // confirm(p);
 }
 
 var preorderUtil = function(walker, traversal) {
@@ -107,6 +113,8 @@ var preorderUtil = function(walker, traversal) {
     }
 }
 
+document.getElementById("postorder").addEventListener("click", postorder);
+
 var postorder = function() {
     var traversal = [];
     var walker = data;
@@ -115,7 +123,8 @@ var postorder = function() {
     postorderUtil(walker, traversal);
     var s = traversal.toString();
     s = 'Postorder Traversal: ' + s;
-    confirm(s);
+    document.getElementById("state").innerHTML = s;
+    // confirm(s);
 }
 
 var postorderUtil = function(walker, traversal) {

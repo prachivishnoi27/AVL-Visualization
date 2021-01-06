@@ -123,9 +123,13 @@ var updateTree = function() {
         .text(function(d) { return d.data.data; });
 };
 
+document.getElementById("insert").addEventListener("click", handleInsert);
 var handleInsert = function(event) {
     var num = document.getElementById('insertInput').value;
-    if (num) {
+    var message;
+    if(!Number(num)){
+        message = 'ENTER VALID INPUT TO INSERT';
+    }else{
         document.getElementById('insertInput').value = '';
         d3.selectAll('#insertTree input').each(function() { // Disable insert
             d3.select(this).attr('disabled', '')
@@ -135,43 +139,61 @@ var handleInsert = function(event) {
                 d3.select(this).attr('disabled', null);
             });
         });
+        message = 'Inserted ' + num;
     }
+    document.getElementById("state").innerHTML = message;
+    var form = document.getElementById("insertTree");
+    form.reset();
     return false;
 };
 
+document.getElementById("delete").addEventListener("click", handleDelete);
 var handleDelete = function(event) {
     var num = document.getElementById('deleteInput').value;
-    if (num && data.data !== null) { // Tree is not empty
-        document.getElementById('deleteInput').value = '';
-        d3.selectAll('#deleteTree input').each(function() { // Disable insert
-            d3.select(this).attr('disabled', '')
-        });
-        deleteTree(parseInt(num), function() {
-            d3.selectAll('#deleteTree input').each(function() { // Enable insert
-                d3.select(this).attr('disabled', null);
-            });
-        });
+    var message;
+    if(!Number(num)){
+        message = 'ENTER VALID INPUT TO DELETE';
+    }else{
+        var isPresent = findNode(num);
+        if(isPresent){
+            if (num && data.data !== null) { // Tree is not empty
+                document.getElementById('deleteInput').value = '';
+                d3.selectAll('#deleteTree input').each(function() { // Disable insert
+                    d3.select(this).attr('disabled', '')
+                });
+                deleteTree(parseInt(num), function() {
+                    d3.selectAll('#deleteTree input').each(function() { // Enable insert
+                        d3.select(this).attr('disabled', null);
+                    });
+                });
+            }
+            message = "Successfully Deleted " + num;
+        }else{
+            message = "Entered number not found";
+        }
     }
+    document.getElementById("state").innerHTML = message;
+    var form = document.getElementById("deleteTree");
+    form.reset();
     return false;
 };
 
+document.getElementById("search").addEventListener("click", handleSearch);
 var handleSearch = function(event) {
     var num = document.getElementById('searchInput').value;
     var getval = findNode(num);
-    console.log(getval);
+    // console.log(getval);
+    console.log(num);
+    var message;
     if (getval === true) {
-        var message = 'Found';
-        console.log(message);
-        confirm("Found");
+        message = 'Found ' + num;
+        // console.log(message);
+        // confirm("Found");
     } else {
-        var message = 'Not Found';
-        // M.toast({
-        //     html: message,
-        //     classes: 'red rounded',
-        //     displayLength: 2000
-        // });
-        confirm("Not found");
-        console.log(message);
+        message = num + ' not found';
     }
+    document.getElementById("state").innerHTML = message;
+    var form = document.getElementById("searchTree");
+    form.reset();
     return false;
 };

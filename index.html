@@ -15,25 +15,25 @@
     <div style="padding: 10px;padding-left: 20px">
         <form id="insertTree" onSubmit="return handleInsert()">
             <input id="insertInput" class="col-xs-2" type="text" placeholder="Number to insert" maxlength="4" size="14" autofocus>
-            <!-- <input type="submit" value="Insert"> -->
-            <button type="submit" class="btn btn-dark my-2 my-sm-0">Insert</button>
+            <button type="submit" id="insert" class="btn btn-warning my-2 my-sm-0">Insert</button>
         </form>
         <form id="deleteTree" onSubmit="return handleDelete()">
             <input id="deleteInput" type="text" class="col-xs-2" placeholder="Number to delete" maxlength="4" size="14">
-            <button type="submit" class="btn btn-dark my-2 my-sm-0">Delete</button>
+            <button type="submit" id="delete" class="btn btn-danger my-2 my-sm-0">Delete</button>
         </form>
         <form id="searchTree" onSubmit="return handleSearch()">
             <input id="searchInput" type="text" class="col-xs-2" placeholder="Number to search" maxlength="4" size="14">
-            <button type="submit" class="btn btn-dark my-2 my-sm-0">Search</button>
+            <button type="submit" id="search" class="btn btn-info my-2 my-sm-0">Search</button>
         </form>
     </div>
     <div class="row" style="margin-left: 15px;padding: 10px;">
-        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="inorder()">Inorder</button>
+        <button type="button" class="btn btn-secondary my-2 my-sm-0" id="inorder" onclick="inorder()">Inorder</button>
         <div style="padding:5px"></div>
-        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="preorder()">Preorder</button>
+        <button type="button" class="btn btn-secondary my-2 my-sm-0" id="preorder" onclick="preorder()">Preorder</button>
         <div style="padding:5px"></div>
-        <button type="button" class="btn btn-dark my-2 my-sm-0" onclick="postorder()">Postorder</button>
+        <button type="button" class="btn btn-secondary my-2 my-sm-0" id="postorder" onclick="postorder()">Postorder</button>
         <div style="padding:5px"></div>
+        <p id="state"></p>
     </div>
     <svg></svg>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
